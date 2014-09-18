@@ -8,7 +8,11 @@
 
 #import "PersistentViewController.h"
 
-@interface PersistentViewController ()
+static NSString * const scoreKey = @"scoreKey";
+static NSString * const playerKey = @"playerKey";
+static NSString * const playerNameKey = @"playerNameKey";
+
+@interface PersistentViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *label;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
@@ -25,10 +29,44 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.textField.delegate = self;
+    
+    NSDictionary *player = [[NSUserDefaults standardUserDefaults] objectForKey:playerKey];
+    
+    [self updateWithDictionary:player];
+    
+    /*
+    NSString *score = [[[NSUserDefaults standardUserDefaults] objectForKey:scoreKey] stringValue];
+    
+    if (score) { // checks if score is not nil
+        self.label.text = score;
+    }
+    
+
+    self.label.text =
+    [[[NSUserDefaults standardUserDefaults] objectForKey:scoreKey] stringValue];
+    */
     
     
 }
 
+
+- (void)updateWithDictionary:(NSDictionary *)dictionary {
+    
+    NSNumber *score = dictionary[scoreKey];
+    
+    if (score) {
+        self.label.text = [score stringValue];
+        self.stepper.value = [score doubleValue];
+    }
+    
+    NSString *name = dictionary[playerNameKey];
+    
+    if (name) {
+        self.textField.text = name;
+    }
+    
+}
 
 
 - (IBAction)loadSaveData:(id)sender {
@@ -46,8 +84,34 @@
 
 
 - (IBAction)save:(id)sender {
+    
+    /*
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:self.textField.text forKey:@"data"];
+    
+    // creating dictionary
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    dict[scoreKey] = self.label.text;
+    
+    [[NSUserDefaults standardUserDefaults] setValue:self.label.text forKey:scoreKey];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@(self.stepper.value) forKey:scoreKey];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize]; // forces data to be saved (synchronized)
+     */
+    
+    NSMutableDictionary *player = [NSMutableDictionary new];
+    
+    if (self.textField.text) {
+        [player setObject:self.textField.text forKey:playerNameKey];
+    }
+    
+    [player setObject:@(self.stepper.value) forKey:scoreKey];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:player forKey:playerKey];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 }
 
 
