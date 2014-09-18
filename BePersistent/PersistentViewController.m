@@ -10,6 +10,12 @@
 
 @interface PersistentViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *label;
+@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet UIStepper *stepper;
+
+
+
 @end
 
 @implementation PersistentViewController
@@ -18,6 +24,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
+
+
+
+
+- (IBAction)changeScore:(id)sender {
+    self.label.text = [NSString stringWithFormat:@"%d", (int)self.stepper.value];
+}
+
+
+
+
+- (IBAction)save:(id)sender {
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
