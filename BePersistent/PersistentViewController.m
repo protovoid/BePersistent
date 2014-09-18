@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIStepper *stepper;
 
+@property (strong, nonatomic) IBOutlet UIButton *loadButton;
 
 
 @end
@@ -23,8 +24,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    
 }
 
+
+
+- (IBAction)loadSaveData:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.textField.text = [defaults objectForKey:@"data"];
+}
 
 
 
@@ -36,7 +46,8 @@
 
 
 - (IBAction)save:(id)sender {
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:self.textField.text forKey:@"data"];
 }
 
 

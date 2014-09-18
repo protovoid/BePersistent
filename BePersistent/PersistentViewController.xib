@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersistentViewController">
             <connections>
                 <outlet property="label" destination="YRZ-XP-ACn" id="1Xd-mr-PZo"/>
+                <outlet property="loadButton" destination="nyH-5s-KvQ" id="cEL-Mh-Ygm"/>
                 <outlet property="stepper" destination="c7u-zg-gft" id="t4c-vp-dPN"/>
                 <outlet property="textField" destination="zIY-Yf-9EC" id="AKA-jH-yBF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -63,6 +64,15 @@
                     </state>
                     <connections>
                         <action selector="save:" destination="-1" eventType="touchUpInside" id="efH-bH-que"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyH-5s-KvQ">
+                    <rect key="frame" x="167" y="239" width="35" height="30"/>
+                    <state key="normal" title="Load">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="loadSaveData:" destination="-1" eventType="touchUpInside" id="532-uf-dyy"/>
                     </connections>
                 </button>
             </subviews>

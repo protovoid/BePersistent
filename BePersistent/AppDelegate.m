@@ -21,6 +21,10 @@
 
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[PersistentViewController new]];
     
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults]; // call to get standard defaults
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
